@@ -1,6 +1,8 @@
 #pragma once
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <iomanip>
 
 inline std::string input_Str(std::istream& in)
 {
@@ -50,7 +52,7 @@ inline int input_INT(std::istream& in, int t, int k)
 			if (temp < t || temp > k)
 				throw std::out_of_range(" ƒиапозон значени привышает  ¬ведите меньше <= ");
 		}
-		catch (std::overflow_error& exz) {
+		catch (std::overflow_error exz) {
 			std::cout << exz.what() << std::endl;
 			rewind(stdin);
 
@@ -59,7 +61,7 @@ inline int input_INT(std::istream& in, int t, int k)
 			flags = 1;
 			std::cout << " ¬ведите повторно\n ";
 		}
-		catch (std::exception& ex) {
+		catch (std::exception ex) {
 			ex.what();
 			rewind(stdin);
 			in.clear(0);
@@ -67,7 +69,7 @@ inline int input_INT(std::istream& in, int t, int k)
 			flags = 1;
 			std::cout << " ¬ведите повторно\n ";
 		}
-		catch (std::out_of_range& ee) {
+		catch (std::out_of_range ee) {
 			std::cout << ee.what() << k << " большо >= " << t << std::endl;
 			rewind(stdin);
 			in.clear(0);

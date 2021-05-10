@@ -141,11 +141,19 @@
   <ItemGroup>
     <ClCompile Include="File.cpp" />
     <ClCompile Include="lab15.cpp" />
+    <ClCompile Include="my_interface.cpp" />
     <ClCompile Include="person.cpp" />
+    <ClCompile Include="teacher.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="File.h" />
+    <ClInclude Include="Header.h" />
+    <ClInclude Include="my_interface.h" />
     <ClInclude Include="person.h" />
+    <ClInclude Include="teacher.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

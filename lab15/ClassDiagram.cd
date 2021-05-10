@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="my_interface&lt;T&gt;">
+    <Position X="43.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAIBAAAgAAAAgAAAAAAAAAAEAAAACAEAA=</HashCode>
+      <FileName>my_interface.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="File" Collapsed="true">
+    <Position X="40" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAggAAAAAAABAAAAAAAAECAAAAEAAAAAAAAA=</HashCode>
+      <FileName>File.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileTXT&lt;T&gt;" Collapsed="true">
+    <Position X="41" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAYQACAAAAAAAABAACAAECABAAAAAAAA=</HashCode>
+      <FileName>File.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="FileBin&lt;T&gt;" Collapsed="true">
+    <Position X="38.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QEAAAAAAAAIAAAAIAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>File.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="person">
+    <Position X="47.5" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAACAABAAAQAIAAAAAAAIAAAAAAAAAAACESAQAA=</HashCode>
+      <FileName>person.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="teacher">
+    <Position X="45.75" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAIAAAQAgAAIAIiAAAIQACAAAAAAAAAAAgAAIBAAA=</HashCode>
+      <FileName>teacher.h</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

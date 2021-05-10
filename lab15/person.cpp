@@ -1,17 +1,17 @@
 #include "person.h"
 
-person::person(std::string lastName, std::string firstName)
+person::person(std::string lastName, std::string firstName, int year)
 {
 	this->lastName = lastName;
 	this->firstName = firstName;
-	//this->year = year;
+	this->year = year;
 }
 
 person::person(const person& obj)
 {
 	this->lastName = obj.lastName;
 	this->firstName = obj.firstName;
-	//this->year = year;
+	this->year = obj.year;
 }
 
 void person::setLastname(std::string lastName)
@@ -24,10 +24,10 @@ void person::setFirstname(std::string firstName)
 	this->firstName = firstName;
 }
 
-//void person::setYear(const int year)
-//{
-//	this->year = year;
-//}
+void person::setYear(const int year)
+{
+	this->year = year;
+}
 
 std::string person::getLastname() const
 {
@@ -39,42 +39,71 @@ std::string person::getFirstname() const
 	return this->firstName;
 }
 
-//int person::getYear() const
-//{
-//	return this->year;
-//}
+int person::getYear() const
+{
+	return this->year;
+}
+
 
 std::istream& operator>>(std::istream& in, person& obj)
 {
-	std::cout << " ¬ведите фамилию: ";
-	std::cin >> 	obj.lastName;
-	std::cout << " ¬ведите  им€: ";
-	std::cin >> obj.firstName;
-	//std::cout << " ¬ведите год рождени€: ";
-	//std::cin >> obj.year;
+	std::cout << " Enter LastName: ";
+	obj.setLastname(input_Str(in));
+	std::cout << " Enter FirstName: ";
+	obj.setFirstname(input_Str(in));
+	std::cout << " Enter Year: ";
+	obj.setYear(input_INT(in, 1910, 2022));
 	return in;
 }
 
 std::ostream& operator<<(std::ostream& out, person& obj)
 {
 	out << std::setw(15) << std::right << obj.lastName
-		<< std::setw(13) << std::right << obj.firstName;
-		//<< std::setw(14) << std::right << obj.year;
+		<< std::setw(13) << std::right << obj.firstName
+		<< std::setw(14) << std::right << obj.year;
 	return out;
 }
 
 std::fstream& operator>>(std::fstream& f, person& obj)
 {
-	int size_obj = 0;
-	f.read(reinterpret_cast<char*>(&size_obj), sizeof(size_obj));
-	f.read(reinterpret_cast<char*>(&obj),size_obj);
+	char buf[size];
+
+	f.read(reinterpret_cast<char*>(&buf), sizeof(buf));
+	std::string ss = std::string(buf);
+	obj.lastName = ss;
+
+	f.read(reinterpret_cast<char*>(&buf), sizeof(buf));
+	ss = std::string(buf);
+	obj.lastName = ss;
+
+	f.read(reinterpret_cast<char*>(&obj.year), sizeof(obj.year));
 	return f;
 }
 
 std::fstream& operator<<(std::fstream& f, person& obj)
 {
-	int size_obj = sizeof(obj);
-	f.write(reinterpret_cast<char*>(&size_obj), sizeof(size_obj));
-	f.write(reinterpret_cast<char*>(&obj), sizeof(obj));
+	char buf[size];
+
+	strcpy_s(buf, obj.lastName.length() + 1, obj.lastName.c_str());
+	f.write(reinterpret_cast<char*>(&buf), sizeof(buf));
+
+	strcpy_s(buf, obj.firstName.length() + 1, obj.firstName.c_str());
+	f.write(reinterpret_cast<char*>(&buf), sizeof(buf));
+
+	f.write(reinterpret_cast<char*>(&obj.year), sizeof(obj.year));
+
+	return f;
+}
+
+
+std::ifstream& operator>>(std::ifstream& f, person& obj)
+{
+	f >> obj.lastName >> obj.firstName >> obj.year;
+	return f;
+}
+
+std::ofstream& operator<<(std::ofstream& f, person& obj)
+{
+	f << obj.lastName<< " " << obj.firstName<< " " << obj.year << " ";
 	return f;
 }
