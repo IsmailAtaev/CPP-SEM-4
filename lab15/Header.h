@@ -1,8 +1,12 @@
-#pragma once
+п»ї#pragma once
 #include <iostream>
 #include <string>
 #include <fstream>
 #include <iomanip>
+#include <deque>
+#include <limits>
+
+constexpr auto size = 40;
 
 inline std::string input_Str(std::istream& in)
 {
@@ -16,19 +20,19 @@ inline std::string input_Str(std::istream& in)
 
 			for (int i = 0; i < ss.length(); i++) {
 				if ((ss[i] < 'a' || ss[i] > 'z') && (ss[i] < 'A' || ss[i] > 'Z'))
-					throw std::exception(" Некоруктный ввод\n Введите Английские буквы !!!");
+					throw std::exception(" Inappropriate input \n Please enter English letters !!!");
 			}
 		}
 		catch (std::exception& ex) {
 			flag = true;
 			ex.what();
 			system("pause");
-			std::cout << " Введите повторно\n ";
+			std::cout << " Try again\n ";
 		}
 		catch (...) {
 			flag = true;
 			system("pause");
-			std::cout << " cto-to poshlo ne tak\n";
+			std::cout << " Something went wrong\t(try|catch(...))\n";
 		}
 	} while (flag);
 	system("cls");
@@ -43,14 +47,16 @@ inline int input_INT(std::istream& in, int t, int k)
 		try {
 			flags = 0;
 			in >> temp;
+			if (temp < t || temp > k)
+				throw std::out_of_range(" The range of values вЂ‹вЂ‹exceeds Enter less<= ");
+
 			if (temp >= INT_MAX || temp <= INT_MIN)
-				throw std::overflow_error(" Диапозон значени привышает int 2147483647  ");
+				throw std::overflow_error(" The range of values вЂ‹вЂ‹exceeds int 2147483647 ");
 
 			if (!in || in.peek() != '\n')
-				throw  std::exception(" Некоректный ввод\n Введите только целые числа  !!!");
+				throw  std::exception(" Incorrect input \n Please enter only whole numbers  !!!");
 
-			if (temp < t || temp > k)
-				throw std::out_of_range(" Диапозон значени привышает  Введите меньше <= ");
+			
 		}
 		catch (std::overflow_error exz) {
 			std::cout << exz.what() << std::endl;
@@ -59,7 +65,15 @@ inline int input_INT(std::istream& in, int t, int k)
 			in.clear(0);
 			system("pause");
 			flags = 1;
-			std::cout << " Введите повторно\n ";
+			std::cout << " Try again\n ";
+		}
+		catch (std::out_of_range ee) {
+			std::cout << ee.what() << k << " larger >= " << t << std::endl;
+			rewind(stdin);
+			in.clear(0);
+			system("pause");
+			flags = 1;
+			std::cout << " Try again " << std::endl;
 		}
 		catch (std::exception ex) {
 			ex.what();
@@ -67,21 +81,14 @@ inline int input_INT(std::istream& in, int t, int k)
 			in.clear(0);
 			system("pause");
 			flags = 1;
-			std::cout << " Введите повторно\n ";
+			std::cout << " Try again\n ";
 		}
-		catch (std::out_of_range ee) {
-			std::cout << ee.what() << k << " большо >= " << t << std::endl;
-			rewind(stdin);
-			in.clear(0);
-			system("pause");
-			flags = 1;
-			std::cout << " Введите повторно " << std::endl;
-		}
+		
 		catch (...) {
 			flags = 1;
 			rewind(stdin);
 			in.clear(0);
-			std::cout << " Что-то пошло не так Вызвын catch(...) " << std::endl;
+			std::cout << " Something went wrong\t(try|catch(...))\n";
 		}
 	} while (flags);
 	system("cls");

@@ -66,7 +66,7 @@ std::ostream& operator<<(std::ostream& out, person& obj)
 
 std::fstream& operator>>(std::fstream& f, person& obj)
 {
-	char buf[size];
+	char buf[size]{};
 
 	f.read(reinterpret_cast<char*>(&buf), sizeof(buf));
 	std::string ss = std::string(buf);

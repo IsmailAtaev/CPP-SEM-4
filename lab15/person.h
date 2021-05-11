@@ -1,8 +1,6 @@
 #pragma once
 #include "Header.h"
 
-constexpr auto size = 40;
-
 class person
 {
 private:
@@ -31,4 +29,3 @@ public:
 	friend std::ifstream& operator>> (std::ifstream& f, person& obj);
 	friend std::ofstream& operator<< (std::ofstream& f, person& obj);
 };
-

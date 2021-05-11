@@ -12,7 +12,7 @@ private:
 	T obj;
 	std::string fileName;
 public:
-	my_interface(std::string fileName,int flag_file) : fileName(fileName), flag_file(flag_file){}
+	my_interface(std::string fileName,int flag_file) : fileName(fileName), flag_file(flag_file) { }
 	my_interface() { }
 	~my_interface() { }
 	void menu();
@@ -99,15 +99,15 @@ inline void my_interface<T>::my_function()
     do {
         system("cls");
         std::cout << " ---===[ Menu selection ]===---" << std::endl;
-        std::cout << " 1.  Add ." << std::endl;
+        std::cout << " 1.  Add." << std::endl;
         std::cout << " 2.  Print." << std::endl;
         std::cout << " 3.  Delete." << std::endl;
-        std::cout << " 5.  Delete All." << std::endl;
+        std::cout << " 4.  Delete All." << std::endl;
         std::cout << " 6.  Searche." << std::endl;
         std::cout << " 7.  Edit." << std::endl;
         std::cout << " 8.  Сортировать по Фамили." << std::endl;
-        std::cout << " 9.  Читать из файла." << std::endl;
-        std::cout << " 10. Запись в файла." << std::endl;
+        std::cout << " 9.  Read with file." << std::endl;
+        std::cout << " 10. Write with file." << std::endl;
         std::cout << " 11. iterator.begin(); " << std::endl;
         std::cout << " 12. iterator.end(); " << std::endl;
         std::cout << " 13. for(iterator) ." << std::endl;
@@ -139,6 +139,44 @@ inline void my_interface<T>::my_function()
             }
             else {
                 std::cout << " There is nothing " << std::endl;
+            }
+            break;
+        }
+        case 4: {
+            if (!ob.empty()) {
+                ob.clear();
+            }
+            break;
+        }
+        case 10: {
+            if (!ob.empty())
+            {
+                T data{};
+                if (this->flag_file == 1) 
+                {
+                    FileTXT<T> txt(this->fileName);
+                    txt.fileTxTOpenOut();
+                    while (!ob.empty())
+                    {
+                        data = ob.front();
+                        txt.writeTxt(data);
+                        ob.pop_front();
+                    }
+                    txt.fileTxTCloseOut();
+                }
+                else if (this->flag_file == 2)
+                {
+                    FileBin<T> bin(this->fileName);
+                    while (!ob.empty())
+                    {
+                        data = ob.front();
+                        bin.WriteBin(data);
+                        ob.pop_front();
+                    }
+                }
+            }
+            else {
+                std::cout << " Nothing write to file" << std::endl;
             }
             break;
         }
