@@ -1,5 +1,6 @@
 #pragma once
 #include "Header.h"
+#include <deque>
 
 class person
 {
@@ -28,4 +29,8 @@ public:
 
 	friend std::ifstream& operator>> (std::ifstream& f, person& obj);
 	friend std::ofstream& operator<< (std::ofstream& f, person& obj);
+
+
+
+
 };

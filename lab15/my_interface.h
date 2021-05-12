@@ -1,10 +1,9 @@
 #pragma once
 #include "File.h"
-#include "person.h"
 #include "teacher.h"
+#include "my_algorithm.h"
 #include <deque>
 #include <algorithm>
-
 
 template<class T>
 class my_interface
@@ -99,20 +98,17 @@ inline void my_interface<T>::my_function()
     do {
         system("cls");
         std::cout << " ---===[ Menu selection ]===---" << std::endl;
-        std::cout << " 1.  Add." << std::endl;
-        std::cout << " 2.  Print." << std::endl;
-        std::cout << " 3.  Delete." << std::endl;
-        std::cout << " 4.  Delete All." << std::endl;
-        std::cout << " 5.  Searche." << std::endl;
-        std::cout << " 7.  Edit." << std::endl;
-        std::cout << " 8.  Сортировать по Фамили." << std::endl;
-        std::cout << " 9.  Read with file." << std::endl;
-        std::cout << " 10. Write with file." << std::endl;
-        std::cout << " 11. iterator.begin(); " << std::endl;
-        std::cout << " 12. iterator.end(); " << std::endl;
-        std::cout << " 13. for(iterator) ." << std::endl;
-        std::cout << " 14. for(iterator.reverse) ." << std::endl;
-        std::cout << " 0   Exit.\t  ";
+        std::cout << " 1. Add." << std::endl;
+        std::cout << " 2. Print." << std::endl;
+        std::cout << " 3. Delete." << std::endl;
+        std::cout << " 4. Delete All." << std::endl;
+        std::cout << " 5. Searche." << std::endl;
+        std::cout << " 6. Edit." << std::endl;
+        std::cout << " 7. Sort." << std::endl;
+        std::cout << " 8. Read with file." << std::endl;
+        std::cout << " 9. Write with file." << std::endl;
+        std::cout << " 0  Exit." << std::endl;
+        std::cout << "_________________________\t";
         temp = input_INT(std::cin, 0, 15);
         system("cls");
         switch (temp) {
@@ -158,15 +154,27 @@ inline void my_interface<T>::my_function()
                 }
                 else {
                     std::cout << *it << std::endl;
-               
                 }
-
-
             }
             else { std::cout << " Nothing searh deque empty !!!" << std::endl; }
             break;
         }
-        case 9: {
+        case 7: {
+            if (!ob.empty()) {
+                if (ob.size() < 2) {
+                    std::cout << " only 1 elemts on deque (impossible sorting 1 elements !!!)" << std::endl;
+                }
+                else {
+                    T temp{};
+                    sort(ob.begin(), ob.end(), Last_Name_Equal(temp));
+                }
+            }
+            else {
+                std::cout << " Nothing sort deque empty !!!" << std::endl;
+            }
+            break;
+        }
+        case 8: {
             T data;
             ob.clear();
             if (this->flag_file == 1) {
@@ -195,7 +203,7 @@ inline void my_interface<T>::my_function()
             }
             break;
         }
-        case 10: {
+        case 9: {
             if (!ob.empty()) {
                 T data{};
                 if (this->flag_file == 1) {
@@ -223,6 +231,7 @@ inline void my_interface<T>::my_function()
             }
             break;
         }
+
         case 0: temp = 0; break;
 
         }

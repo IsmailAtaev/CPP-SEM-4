@@ -89,6 +89,7 @@ bool teacher::operator!=(const teacher& obj)
 	}
 }
 
+
 std::istream& operator>>(std::istream& in, teacher& obj)
 {
 	in >> dynamic_cast<person&>(obj);

@@ -13,6 +13,7 @@ public:
 		std::string speciality = "", int listpapers = 0);
 
 	teacher(const teacher& objTeacher);
+	~teacher() { }
 	teacher& operator=(const teacher& obj);
 
 	void setPosition(const std::string position);
@@ -36,6 +37,6 @@ public:
 
 	friend std::ifstream& operator>> (std::ifstream& f, teacher& objT);
 	friend std::ofstream& operator<< (std::ofstream& f, teacher& objT);
-	~teacher() { }
+	
 };
 
