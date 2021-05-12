@@ -1,6 +1,7 @@
 #include "teacher.h"
 
-teacher::teacher(std::string Fname, std::string Lname, int YearOfBirth, std::string position, std::string speciality, int listpapers)
+teacher::teacher(std::string Fname, std::string Lname,	int YearOfBirth, 
+	std::string position, std::string speciality, int listpapers)
 	:person(Fname, Lname, YearOfBirth)
 {
 	this->position = position;
@@ -112,7 +113,7 @@ std::ostream& operator<<(std::ostream& out, teacher& obj)
 std::fstream& operator>>(std::fstream& f, teacher& obj)
 {
 	f >> dynamic_cast<person&>(obj);
-	char buf[size];
+	char buf[size]{};
 
 	f.read(reinterpret_cast<char*>(&buf), sizeof(buf));
 	std::string ss = std::string(buf);
@@ -143,12 +144,18 @@ std::fstream& operator<<(std::fstream& f, teacher& obj)
 
 std::ifstream& operator>>(std::ifstream& f, teacher& obj)
 {
-	f >> dynamic_cast<person&>(obj) >> obj.position >> obj.speciality >> obj.listpapers;
+	f >> dynamic_cast<person&>(obj)
+		>> obj.position
+		>> obj.speciality
+		>> obj.listpapers;
 	return f;
 }
 
 std::ofstream& operator<<(std::ofstream& f, teacher& obj)
 {
-	f << dynamic_cast<person&>(obj) << obj.position << " " << obj.speciality << " " << obj.listpapers << std::endl;
+	f << dynamic_cast<person&>(obj) 
+		<< obj.position << " " 
+		<< obj.speciality << " " 
+		<< obj.listpapers << std::endl;
 	return f;
 }

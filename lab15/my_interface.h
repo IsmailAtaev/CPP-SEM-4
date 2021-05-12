@@ -40,14 +40,12 @@ inline void my_interface<T>::menu()
         std::cout << " 1. Teacher." << std::endl;
         std::cout << " 2. Party." << std::endl;
         std::cout << " 3. Teacher_Party. " << std::endl;
-        std::cout << " 0. Exit. ";
-        std::cout << "======================" << std::endl;
+        std::cout << " 0. Exit. " << std::endl;
+        std::cout << "======================\n\t";
         ch = input_INT(std::cin, 0, 3);
         system("cls");
-        switch (ch)
-        {
-        case 1:
-        {
+        switch (ch) {
+        case 1: {
             std::string filenameT;
             if (state == 1)
                 filenameT = "teacher.txt";
@@ -60,30 +58,30 @@ inline void my_interface<T>::menu()
             objTeacher.my_function();
             break;
         }
-        /*   case 2:
-           {
-               std::string filenameP;
-               if (state == 1)
-                   filenameP = "party.txt";
-               else if (state == 2)
-                   filenameP = "partyBin.txt";
+              /*   case 2:
+                 {
+                     std::string filenameP;
+                     if (state == 1)
+                         filenameP = "party.txt";
+                     else if (state == 2)
+                         filenameP = "partyBin.txt";
 
-               my_interface<Party> objParty(filenameP, state);
-               objParty.my_function();
-               break;
-           }
-           case 3:
-           {
-               std::string filenameTP;
-               if (state == 1)
-                   filenameTP = "teacher_party.txt";
-               else if (state == 2)
-                   filenameTP = "teacher_partyBin.txt";
+                     my_interface<Party> objParty(filenameP, state);
+                     objParty.my_function();
+                     break;
+                 }
+                 case 3:
+                 {
+                     std::string filenameTP;
+                     if (state == 1)
+                         filenameTP = "teacher_party.txt";
+                     else if (state == 2)
+                         filenameTP = "teacher_partyBin.txt";
 
-               my_interface<Teacher_Party> objTeacher_Party(filenameTP, state);
-               objTeacher_Party.my_function();
-               break;
-           }*/
+                     my_interface<Teacher_Party> objTeacher_Party(filenameTP, state);
+                     objTeacher_Party.my_function();
+                     break;
+                 }*/
         default:
             ch = 0;
             break;
@@ -125,7 +123,7 @@ inline void my_interface<T>::my_function()
         }
         case 2: {
             if (!ob.empty()) {
-                for (auto it = ob.begin(); it != ob.end(); it++)
+                for (typename deque<T>::iterator it = ob.begin(); it != ob.end(); it++)
                     std::cout << *it << std::endl;
             }
             else {
@@ -148,12 +146,39 @@ inline void my_interface<T>::my_function()
             }
             break;
         }
+        case 9: {
+            T data;
+            ob.clear();
+            if (this->flag_file == 1) {
+                FileTXT<T> txt(this->fileName);
+                txt.fileTxTOpenIn();
+                while (1) {
+                    txt.readTxt(data);
+                    if (txt.FileTxTeofIn()) {
+                        txt.fileTxTCloseIn();
+                        break;
+                    }
+                    ob.push_back(data);
+                }
+            }
+            else if (this->flag_file == 2) {
+                FileBin<T> bin(this->fileName);
+                while (1) {
+                    bin.ReadBin(data);
+                    if (bin.EndOfFile())
+                        break;
+                    ob.push_back(data);
+                }
+            }
+            else {
+                std::cout << " error (state file != 1 and 2 ) global error " << std::endl;
+            }
+            break;
+        }
         case 10: {
-            if (!ob.empty())
-            {
+            if (!ob.empty()) {
                 T data{};
-                if (this->flag_file == 1) 
-                {
+                if (this->flag_file == 1) {
                     FileTXT<T> txt(this->fileName);
                     txt.fileTxTOpenOut();
                     while (!ob.empty())
@@ -164,30 +189,24 @@ inline void my_interface<T>::my_function()
                     }
                     txt.fileTxTCloseOut();
                 }
-                else if (this->flag_file == 2)
-                {
+                else if (this->flag_file == 2) {
                     FileBin<T> bin(this->fileName);
-                    while (!ob.empty())
-                    {
+                    while (!ob.empty()) {
                         data = ob.front();
                         bin.WriteBin(data);
                         ob.pop_front();
                     }
                 }
-            }
-            else {
-                std::cout << " Nothing write to file" << std::endl;
+                else {
+                    std::cout << " error (state file != 1 and 2 ) global error " << std::endl;
+                }
             }
             break;
         }
         case 0: temp = 0; break;
-            
+
         }
         system("pause");
         system("cls");
     } while (temp);
-
-
-
 }
-
