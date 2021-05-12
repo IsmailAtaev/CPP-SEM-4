@@ -3,6 +3,8 @@
 #include "person.h"
 #include "teacher.h"
 #include <deque>
+#include <algorithm>
+
 
 template<class T>
 class my_interface
@@ -101,7 +103,7 @@ inline void my_interface<T>::my_function()
         std::cout << " 2.  Print." << std::endl;
         std::cout << " 3.  Delete." << std::endl;
         std::cout << " 4.  Delete All." << std::endl;
-        std::cout << " 6.  Searche." << std::endl;
+        std::cout << " 5.  Searche." << std::endl;
         std::cout << " 7.  Edit." << std::endl;
         std::cout << " 8.  Сортировать по Фамили." << std::endl;
         std::cout << " 9.  Read with file." << std::endl;
@@ -144,6 +146,24 @@ inline void my_interface<T>::my_function()
             if (!ob.empty()) {
                 ob.clear();
             }
+            break;
+        }
+        case 5: {
+            if (!ob.empty()) {
+                T value{};
+                std::cin >> value;
+                typename deque<T>::iterator it = find(ob.begin(), ob.end(), value);
+                if (it == ob.end()) {
+                    std::cout << " Not elemt in deque " << std::endl;
+                }
+                else {
+                    std::cout << *it << std::endl;
+               
+                }
+
+
+            }
+            else { std::cout << " Nothing searh deque empty !!!" << std::endl; }
             break;
         }
         case 9: {
