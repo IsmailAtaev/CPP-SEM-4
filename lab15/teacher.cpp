@@ -58,6 +58,36 @@ int teacher::getListpapers() const
 	return this->listpapers;
 }
 
+bool teacher::operator==(const teacher& obj)
+{
+	if (this->getLastname() == obj.getLastname() &&
+		this->getFirstname() == obj.getFirstname() &&
+		this->getYear() == obj.getYear() &&
+		this->position == this->position &&
+		this->speciality == obj.speciality &&
+		this->listpapers == obj.listpapers) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+bool teacher::operator!=(const teacher& obj)
+{
+	if (this->getLastname() != obj.getLastname() &&
+		this->getFirstname() != obj.getFirstname() &&
+		this->getYear() != obj.getYear() &&
+		this->position != this->position &&
+		this->speciality != obj.speciality &&
+		this->listpapers != obj.listpapers) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 std::istream& operator>>(std::istream& in, teacher& obj)
 {
 	in >> dynamic_cast<person&>(obj);

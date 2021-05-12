@@ -74,7 +74,7 @@ std::fstream& operator>>(std::fstream& f, person& obj)
 
 	f.read(reinterpret_cast<char*>(&buf), sizeof(buf));
 	ss = std::string(buf);
-	obj.lastName = ss;
+	obj.firstName = ss;
 
 	f.read(reinterpret_cast<char*>(&obj.year), sizeof(obj.year));
 	return f;

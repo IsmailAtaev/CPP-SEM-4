@@ -8,7 +8,10 @@ private:
 	std::string speciality; // специальность
 	int listpapers; // список научных трудов
 public:
-	teacher(std::string Fname = "", std::string Lname = "", int YearOfBirth = 0, std::string position = "", std::string speciality = "", int listpapers = 0);
+	teacher(std::string Fname = "", std::string Lname = "",
+		int YearOfBirth = 0, std::string position = "", 
+		std::string speciality = "", int listpapers = 0);
+
 	teacher(const teacher& objTeacher);
 	teacher& operator=(const teacher& obj);
 
@@ -20,11 +23,10 @@ public:
 	std::string getSpeciality()const;
 	int getListpapers()const;
 
-	static void title();
+	//static void title();
 
-	bool operator ==(teacher& obj);
-	bool operator != (teacher& obj);
-	friend bool operator > (teacher& obj1, teacher& obj2);
+	bool operator ==(const teacher& obj);
+	bool operator != (const teacher& obj);
 
 	friend std::istream& operator>>(std::istream& in, teacher&);
 	friend std::ostream& operator<<(std::ostream& out, teacher&);
