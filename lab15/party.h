@@ -22,7 +22,7 @@ public:
     bool operator==(party& obj);
     bool operator != (party& obj);
 
-    friend std::istream& operator>>(std::istream& in, party&);
+    friend std::istream& operator>>(std::istream& in, party& obj);
     friend std::ostream& operator<<(std::ostream& out, party&);
 
     friend std::fstream& operator>> (std::fstream& f, party& obj);
@@ -30,6 +30,15 @@ public:
 
     friend std::ifstream& operator>> (std::ifstream& f, party& obj);
     friend std::ofstream& operator<< (std::ofstream& f, party& obj);
-
+    int get_type_sort()override
+    {
+        std::cout << "=====<Sort>=====" << std::endl;
+        std::cout << " 1  LastName." << std::endl;
+        std::cout << " 2. FistName." << std::endl;
+        std::cout << " 3. Year." << std::endl;
+        std::cout << " 4. NameParty." << std::endl;
+        std::cout << " 5. Biogrophy." << std::endl;
+        return  input_INT(std::cin, 1, 6);
+    }
 };
 

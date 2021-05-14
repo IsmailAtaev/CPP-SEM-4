@@ -166,7 +166,18 @@ inline void my_interface<T>::my_function()
                 }
                 else {
                     T temp{};
-                    sort(ob.begin(), ob.end(), Last_Name_Equal(temp));
+                    int count = temp.get_type_sort();
+                    switch (count)
+                    {
+                    case 1: {
+                        sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
+                        sort(ob.begin(), ob.end(), Last_Name_Equal_partys);
+                    }
+                    default:
+                        break;
+                    }
+
+                    sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
                 }
             }
             else {

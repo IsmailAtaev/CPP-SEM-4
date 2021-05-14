@@ -37,6 +37,15 @@ public:
 
 	friend std::ifstream& operator>> (std::ifstream& f, teacher& objT);
 	friend std::ofstream& operator<< (std::ofstream& f, teacher& objT);
-	
+	int get_type_sort()override {
+		std::cout << "=====<Sort>=====" << std::endl;
+		std::cout << " 1  LastName." << std::endl;
+		std::cout << " 2. FistName." << std::endl;
+		std::cout << " 3. Year." << std::endl;
+		std::cout << " 4. position." << std::endl;
+		std::cout << " 5. speciality." << std::endl;
+		std::cout << " 6. listpapers." << std::endl;
+		return  input_INT(std::cin, 1, 6);
+	}
 };
 
