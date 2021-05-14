@@ -6,6 +6,21 @@
 #include <algorithm>
 
 template<class T>
+inline void Print(deque<T>& obj)
+{
+    if (!obj.empty()) {
+        int i = 0;
+        for (typename deque<T>::iterator it = obj.begin(); it != obj.end(); it++, i++)
+        {
+            std::cout << i + 1 << *it << std::endl;
+        }
+    }
+    else {
+        std::cout << " There is nothing " << std::endl;
+    }
+}
+
+template<class T>
 class my_interface
 {
 private:
@@ -120,22 +135,14 @@ inline void my_interface<T>::my_function()
             break;
         }
         case 2: {
-            if (!ob.empty()) {
-                for (typename deque<T>::iterator it = ob.begin(); it != ob.end(); it++)
-                    std::cout << *it << std::endl;
-            }
-            else {
-                std::cout << " There is nothing " << std::endl;
-            }
+            Print(ob);
             break;
         }
         case 3: {
-            if (!ob.empty()) {
+            if (!ob.empty())
                 ob.pop_front();
-            }
-            else {
+            else
                 std::cout << " There is nothing " << std::endl;
-            }
             break;
         }
         case 4: {
@@ -159,6 +166,33 @@ inline void my_interface<T>::my_function()
             else { std::cout << " Nothing searh deque empty !!!" << std::endl; }
             break;
         }
+        case 6: {
+            Print(ob);
+            if (!ob.empty()) {
+                int coutn = 0;
+                std::cout << " Enter number for edit " << std::endl;
+                std::cin >> coutn;
+                --coutn;
+                T temp{};
+                
+                if (coutn < ob.size()) {
+
+                    auto it = ob.begin();
+                    temp = ob.at(coutn);
+                    std::cout << temp << std::endl;
+                    temp.get_type_sort();
+                    std::cout << temp << std::endl;
+                    std::advance(it, count);
+                    ob.erase(it);
+                    ob.insert(it, temp);
+
+                }
+
+            }
+
+           
+            break;
+        }
         case 7: {
             if (!ob.empty()) {
                 if (ob.size() < 2) {
@@ -166,18 +200,18 @@ inline void my_interface<T>::my_function()
                 }
                 else {
                     T temp{};
-                    int count = temp.get_type_sort();
+                    int count = 0;// temp.get_type_sort();
                     switch (count)
                     {
                     case 1: {
-                        sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
-                        sort(ob.begin(), ob.end(), Last_Name_Equal_partys);
+                    //    sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
+                       // sort(ob.begin(), ob.end(), Last_Name_Equal_partys);
                     }
                     default:
                         break;
                     }
 
-                    sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
+                  //  sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
                 }
             }
             else {

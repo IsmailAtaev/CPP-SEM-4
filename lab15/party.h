@@ -30,7 +30,7 @@ public:
 
     friend std::ifstream& operator>> (std::ifstream& f, party& obj);
     friend std::ofstream& operator<< (std::ofstream& f, party& obj);
-    int get_type_sort()override
+    void get_type_sort()override
     {
         std::cout << "=====<Sort>=====" << std::endl;
         std::cout << " 1  LastName." << std::endl;
@@ -38,7 +38,7 @@ public:
         std::cout << " 3. Year." << std::endl;
         std::cout << " 4. NameParty." << std::endl;
         std::cout << " 5. Biogrophy." << std::endl;
-        return  input_INT(std::cin, 1, 6);
+      // return  input_INT(std::cin, 1, 6);
     }
 };
 
