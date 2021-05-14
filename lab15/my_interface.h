@@ -124,7 +124,7 @@ inline void my_interface<T>::my_function()
         std::cout << " 9. Write with file." << std::endl;
         std::cout << " 0  Exit." << std::endl;
         std::cout << "_________________________\t";
-        temp = input_INT(std::cin, 0, 15);
+        temp = input_INT(std::cin, 0, 9);
         system("cls");
         switch (temp) {
         case 1: {
@@ -173,45 +173,47 @@ inline void my_interface<T>::my_function()
                 std::cout << " Enter number for edit " << std::endl;
                 std::cin >> coutn;
                 --coutn;
-                T temp{};
-                
                 if (coutn < ob.size()) {
-
                     auto it = ob.begin();
-                    temp = ob.at(coutn);
-                    std::cout << temp << std::endl;
-                    temp.get_type_sort();
-                    std::cout << temp << std::endl;
-                    std::advance(it, count);
-                    ob.erase(it);
-                    ob.insert(it, temp);
+                    for (int i = 0; i < coutn; i++)
+                        it++;
 
+                    (*it).get_type_sort();
                 }
-
             }
-
-           
             break;
         }
         case 7: {
             if (!ob.empty()) {
-                if (ob.size() < 2) {
-                    std::cout << " only 1 elemts on deque (impossible sorting 1 elements !!!)" << std::endl;
+                std::cout << " 1. lastName" << std::endl;
+                std::cout << " 2. FirstName." << std::endl;
+                std::cout << " 3. Year." << std::endl;
+                int temp = input_INT(std::cin, 1, 3);
+                switch (temp)
+                {
+                case 1: {
+                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool
+                        {
+                            return obj1.getLastname() < obj2.getLastname();
+                        });
+                    break;
                 }
-                else {
-                    T temp{};
-                    int count = 0;// temp.get_type_sort();
-                    switch (count)
-                    {
-                    case 1: {
-                    //    sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
-                       // sort(ob.begin(), ob.end(), Last_Name_Equal_partys);
-                    }
-                    default:
-                        break;
-                    }
-
-                  //  sort(ob.begin(), ob.end(), Last_Name_Equal_teachers);
+                case 2: {
+                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool
+                        {
+                            return obj1.getFirstname() < obj2.getFirstname();
+                        });
+                    break;
+                }
+                case 3: {
+                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool
+                        {
+                            return obj1.getYear() < obj2.getYear();
+                        });
+                    break;
+                }
+                default:
+                    break;
                 }
             }
             else {
@@ -276,9 +278,6 @@ inline void my_interface<T>::my_function()
             }
             break;
         }
-
-        case 0: temp = 0; break;
-
         }
         system("pause");
         system("cls");
