@@ -46,7 +46,7 @@ std::string party::getBiogrophy() const
 	return this->Biogrophy;
 }
 
-bool party::operator==(party& obj)
+bool party::operator==(const party& obj)
 {
 	if (this->getLastname() == obj.getLastname() &&
 		this->getFirstname() == obj.getFirstname() &&

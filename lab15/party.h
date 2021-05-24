@@ -18,8 +18,8 @@ public:
 
     std::string getNameParty()const;
     std::string getBiogrophy()const;
-
-    bool operator==(party& obj);
+    static void title() { std::cout << "i am title" << std::endl; }
+    bool operator==(const party& obj);
     bool operator != (party& obj);
 
     friend std::istream& operator>>(std::istream& in, party& obj);
@@ -30,7 +30,8 @@ public:
 
     friend std::ifstream& operator>> (std::ifstream& f, party& obj);
     friend std::ofstream& operator<< (std::ofstream& f, party& obj);
-    void get_type_sort()override
+    void Search(){ }
+    void Edit()
     {
         std::cout << "=====<Sort>=====" << std::endl;
         std::cout << " 1  LastName." << std::endl;

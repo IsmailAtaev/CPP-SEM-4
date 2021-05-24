@@ -5,18 +5,14 @@
 #include <deque>
 #include <algorithm>
 
+using namespace std;
+
+
 template<class T>
-inline void Print(deque<T>& obj)
+void Print(typename deque<T>::iterator it_begin, typename deque<T>::iterator it_end)
 {
-    if (!obj.empty()) {
-        int i = 0;
-        for (typename deque<T>::iterator it = obj.begin(); it != obj.end(); it++, i++)
-        {
-            std::cout << i + 1 << *it << std::endl;
-        }
-    }
-    else {
-        std::cout << " There is nothing " << std::endl;
+    for (int i = 0; it_begin != it_end; it_begin++, i++) {
+        std::cout << i + 1 << *it_begin << std::endl;
     }
 }
 
@@ -29,7 +25,7 @@ private:
 	std::string fileName;
 public:
 	my_interface(std::string fileName,int flag_file) : fileName(fileName), flag_file(flag_file) { }
-	my_interface() { }
+    my_interface(): flag_file(0), fileName("") { }
 	~my_interface() { }
 	void menu();
 	void my_function();
@@ -116,45 +112,74 @@ inline void my_interface<T>::my_function()
         std::cout << " 1. Add." << std::endl;
         std::cout << " 2. Print." << std::endl;
         std::cout << " 3. Delete." << std::endl;
-        std::cout << " 4. Delete All." << std::endl;
-        std::cout << " 5. Searche." << std::endl;
-        std::cout << " 6. Edit." << std::endl;
-        std::cout << " 7. Sort." << std::endl;
-        std::cout << " 8. Read with file." << std::endl;
-        std::cout << " 9. Write with file." << std::endl;
+        std::cout << " 4. Searche." << std::endl;
+        std::cout << " 5. Edit." << std::endl;
+        std::cout << " 6. Sort." << std::endl;
+        std::cout << " 7. Read with file." << std::endl;
+        std::cout << " 8. Write with file." << std::endl;
         std::cout << " 0  Exit." << std::endl;
-        std::cout << "_________________________\t";
+        std::cout << " Enter number \t";
         temp = input_INT(std::cin, 0, 9);
         system("cls");
-        switch (temp) {
-        case 1: {
+        switch (temp) 
+        {
+        case 1:
+        {
             T value{};
             rewind stdin;
             std::cin >> value;
             ob.push_back(value);
             break;
         }
-        case 2: {
-            Print(ob);
-            break;
-        }
-        case 3: {
-            if (!ob.empty())
-                ob.pop_front();
-            else
-                std::cout << " There is nothing " << std::endl;
-            break;
-        }
-        case 4: {
+        case 2:
+        {
             if (!ob.empty()) {
-                ob.clear();
+                T::title();
+                Print<T>(ob.begin(),ob.end());
             }
             break;
         }
-        case 5: {
+        case 3: 
+        {
+            if (!ob.empty()) 
+            {
+                std::cout << " 1. Delete." << std::endl;
+                std::cout << " 2. Delete All." << std::endl;
+                std::cout << " 3. Delete remove earase(remove())." << std::endl;
+                std::cout << " 0. Exit " << std::endl;
+                std::cout << " Enter number " << std::endl;
+                switch (input_INT(std::cin,0,3))
+                {
+                case 1: {
+                    ob.pop_front();
+                    break;
+                }
+                case 2: {
+                    ob.clear(); 
+                    break;
+                }
+                case 3: {
+                    Print<T>(ob.begin(),ob.end());
+                    std::cout << " Enter number for delete " << std::endl;
+                    int elem = input_INT(std::cin, 1, ob.size()) - 1;
+                    T temp = ob.at(elem);
+                    ob.erase(remove(ob.begin(), ob.end(), temp), ob.end());
+                    break;
+                }
+                default:
+                    break;
+                }               
+            }
+            else {
+                std::cout << " There is nothing " << std::endl;
+            }
+            break;
+        }
+        case 4: 
+        {
             if (!ob.empty()) {
                 T value{};
-                std::cin >> value;
+                value.Search();
                 typename deque<T>::iterator it = find(ob.begin(), ob.end(), value);
                 if (it == ob.end()) {
                     std::cout << " Not elemt in deque " << std::endl;
@@ -163,53 +188,49 @@ inline void my_interface<T>::my_function()
                     std::cout << *it << std::endl;
                 }
             }
-            else { std::cout << " Nothing searh deque empty !!!" << std::endl; }
+            else {
+                std::cout << " Nothing searh deque empty !!!" << std::endl;
+            }
             break;
         }
-        case 6: {
-            Print(ob);
-            if (!ob.empty()) {
-                int coutn = 0;
+        case 5:
+        {
+            if (!ob.empty())
+            {
+                Print<T>(ob.begin(), ob.end());
                 std::cout << " Enter number for edit " << std::endl;
-                std::cin >> coutn;
-                --coutn;
-                if (coutn < ob.size()) {
-                    auto it = ob.begin();
-                    for (int i = 0; i < coutn; i++)
-                        it++;
-
-                    (*it).get_type_sort();
+                int coutn = input_INT(std::cin, 1, ob.size()) - 1;
+                auto it = ob.begin();
+                for (int i = 0; it != ob.end(); it++, i++)
+                {
+                    if (i == coutn)
+                    {
+                        (*it).Edit();
+                        break;
+                    }
                 }
             }
             break;
         }
-        case 7: {
+        case 6: 
+        {
             if (!ob.empty()) {
                 std::cout << " 1. lastName" << std::endl;
                 std::cout << " 2. FirstName." << std::endl;
                 std::cout << " 3. Year." << std::endl;
+                std::cout << " Enter number " << std::endl;
                 int temp = input_INT(std::cin, 1, 3);
                 switch (temp)
                 {
                 case 1: {
-                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool
-                        {
-                            return obj1.getLastname() < obj2.getLastname();
-                        });
+                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool {return obj1.getLastname() < obj2.getLastname(); });
                     break;
                 }
                 case 2: {
-                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool
-                        {
-                            return obj1.getFirstname() < obj2.getFirstname();
-                        });
+                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool {return obj1.getFirstname() < obj2.getFirstname(); });
                     break;
                 }
-                case 3: {
-                    std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool
-                        {
-                            return obj1.getYear() < obj2.getYear();
-                        });
+                case 3: {std::sort(ob.begin(), ob.end(), [](T obj1, T obj2) -> bool {return obj1.getYear() < obj2.getYear(); });
                     break;
                 }
                 default:
@@ -221,7 +242,8 @@ inline void my_interface<T>::my_function()
             }
             break;
         }
-        case 8: {
+        case 7: 
+        {
             T data;
             ob.clear();
             if (this->flag_file == 1) {
@@ -250,7 +272,8 @@ inline void my_interface<T>::my_function()
             }
             break;
         }
-        case 9: {
+        case 8:
+        {
             if (!ob.empty()) {
                 T data{};
                 if (this->flag_file == 1) {
@@ -278,6 +301,18 @@ inline void my_interface<T>::my_function()
             }
             break;
         }
+
+        case 9:
+        {
+            for (auto it : ob)
+            {
+                std::cout << it << std::endl;
+            }
+            std::cout << "\n\n\n\nsikim sikim sikimm \n\n\n\n\n" << std::endl;
+            for_each(ob.begin(), ob.end(), [](T tt) {std::cout << tt << std::endl; });
+
+        }
+        default: { break; }
         }
         system("pause");
         system("cls");

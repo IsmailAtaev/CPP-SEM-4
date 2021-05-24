@@ -1,6 +1,6 @@
 ﻿#include "my_interface.h"
 
-int main(int argc, char argv[])
+int main()
 {
 	my_interface<char> ob;
 	ob.menu();

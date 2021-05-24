@@ -59,14 +59,21 @@ int teacher::getListpapers() const
 	return this->listpapers;
 }
 
+void teacher::title()
+{
+	std::cout << "+---+---------------+-----------+---------------+---------------+-----------------+---------------------+" << std::endl;
+	std::cout << "| № |   Фамилия     |   Имя     | Год Рождения  |   Должность   |  Специальность  |   Список.науч.труд. |" << std::endl;
+	std::cout << "+---+---------------+-----------+---------------+---------------+-----------------+---------------------+" << std::endl;
+}
+
 bool teacher::operator==(const teacher& obj)
 {
-	if (this->getLastname() == obj.getLastname() &&
-		this->getFirstname() == obj.getFirstname() &&
-		this->getYear() == obj.getYear() &&
-		this->position == this->position &&
-		this->speciality == obj.speciality &&
-		this->listpapers == obj.listpapers) {
+	if ((this->getLastname() == obj.getLastname() || obj.getLastname() == "") &&
+		(this->getFirstname() == obj.getFirstname() || obj.getFirstname() == "") &&
+		(this->getYear() == obj.getYear() || obj.getYear() == 0) &&
+		(this->position == obj.getPosition() || obj.getPosition() == "") &&
+		(this->speciality == obj.getSpeciality()|| obj.getSpeciality() == "") &&
+		(this->listpapers == obj.getListpapers() || obj.getListpapers() == 0)) {
 		return true;
 	}
 	else {
@@ -86,6 +93,73 @@ bool teacher::operator!=(const teacher& obj)
 	}
 	else {
 		return false;
+	}
+}
+
+void teacher::Edit()
+{
+	std::cout << "=====<Edit>=====" << std::endl;
+	std::cout << " 1  LastName." << std::endl;
+	std::cout << " 2. FistName." << std::endl;
+	std::cout << " 3. Year." << std::endl;
+	std::cout << " 4. position." << std::endl;
+	std::cout << " 5. speciality." << std::endl;
+	std::cout << " 6. listpapers." << std::endl;
+	int count = input_INT(std::cin, 1, 6);
+	switch (count)
+	{
+	case 1: this->setLastname(input_Str(std::cin));	break;
+	case 2: this->setFirstname(input_Str(std::cin)); break;
+	case 3: this->setYear(input_INT(std::cin, 1910, 2022)); break;
+	case 4: this->position = input_Str(std::cin); break;
+	case 5: this->speciality = input_Str(std::cin); break;
+	case 6: this->listpapers = input_INT(std::cin, 0, 500); break;
+	}
+}
+
+void teacher::Search()
+{
+	std::cout << "=====< Search >=====" << std::endl;
+	std::cout << " 1  LastName." << std::endl;
+	std::cout << " 2. FistName." << std::endl;
+	std::cout << " 3. Year." << std::endl;
+	std::cout << " 4. position." << std::endl;
+	std::cout << " 5. speciality." << std::endl;
+	std::cout << " 6. listpapers." << std::endl;
+	std::cout << " Enter number for Search " << std::endl;
+	int count = input_INT(std::cin, 1, 6);
+	switch (count)
+	{
+	case 1: {
+		std::cout << " Enter LastName ";
+		this->setLastname(input_Str(std::cin));
+		break;
+	}
+	case 2: {
+		std::cout << " Enter FistName " ;
+		this->setFirstname(input_Str(std::cin));
+		break;
+	}
+	case 3: {
+		std::cout << " Enter Year ";
+		this->setYear(input_INT(std::cin, 1910, 2022));
+		break;
+	}
+	case 4: {
+		std::cout << " Enter Position ";
+		this->position = input_Str(std::cin);
+		break;
+	}
+	case 5: {
+		std::cout << " Enter Speciality ";
+		this->speciality = input_Str(std::cin);
+		break;
+	}
+	case 6: {
+		std::cout << " Enter List papers ";
+		this->listpapers = input_INT(std::cin, 0, 500);
+		break;
+	}
 	}
 }
 
