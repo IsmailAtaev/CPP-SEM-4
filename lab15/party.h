@@ -18,7 +18,6 @@ public:
 
     std::string getNameParty()const;
     std::string getBiogrophy()const;
-    static void title() { std::cout << "i am title" << std::endl; }
     bool operator==(const party& obj);
     bool operator != (party& obj);
 
@@ -30,16 +29,8 @@ public:
 
     friend std::ifstream& operator>> (std::ifstream& f, party& obj);
     friend std::ofstream& operator<< (std::ofstream& f, party& obj);
-    void Search(){ }
-    void Edit()
-    {
-        std::cout << "=====<Sort>=====" << std::endl;
-        std::cout << " 1  LastName." << std::endl;
-        std::cout << " 2. FistName." << std::endl;
-        std::cout << " 3. Year." << std::endl;
-        std::cout << " 4. NameParty." << std::endl;
-        std::cout << " 5. Biogrophy." << std::endl;
-      // return  input_INT(std::cin, 1, 6);
-    }
+    static void title();
+    void Search();
+    void Edit();
 };
 

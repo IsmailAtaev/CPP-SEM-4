@@ -29,8 +29,4 @@ public:
 
 	friend std::ifstream& operator>> (std::ifstream& f, person& obj);
 	friend std::ofstream& operator<< (std::ofstream& f, person& obj);
-
-	//virtual void get_type_sort() = 0;
-
-
 };
