@@ -1,14 +1,13 @@
 #pragma once
 #include "person.h"
 
-class party :
-    public person
+class party :virtual   public person
 {
-private:
+protected:
     std::string NameParty;
     std::string Biogrophy;
 public:
-    party(std::string Fname = "", std::string Lname = "", int YearOfBirth = 0,
+    party(std::string Lname = "", std::string Fname = "", int YearOfBirth = 0,
         std::string NameParty = "", std::string Biogrophy = "");
     party(const party& obj);
     ~party() { }
@@ -33,4 +32,3 @@ public:
     void Search();
     void Edit();
 };
-

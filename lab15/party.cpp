@@ -1,8 +1,7 @@
 #include "party.h"
 
 party::party(std::string Lname, std::string Fname, int YearOfBirth,
-	std::string NameParty, std::string Biogrophy)
-	:person(Lname,Fname,YearOfBirth)
+	std::string NameParty, std::string Biogrophy) :person(Lname,Fname,YearOfBirth)
 {
 	this->NameParty = NameParty;
 	this->Biogrophy = Biogrophy;
@@ -77,7 +76,7 @@ bool party::operator!=(party& obj)
 void party::title()
 {
 	std::cout << "+---+---------------+-----------+---------------+---------------+----------------------------+" << std::endl;
-	std::cout << "| ¹ |   Lastname    | Fistname  |     Year      |      Party    |          Biogrophy         |" << std::endl;
+	std::cout << "| N |   Lastname    | Fistname  |     Year      |      Party    |          Biogrophy         |" << std::endl;
 	std::cout << "+---+---------------+-----------+---------------+---------------+----------------------------+" << std::endl;
 }
 
@@ -145,7 +144,9 @@ void party::Edit()
 std::istream& operator>>(std::istream& in, party& obj)
 {
 	in >> dynamic_cast<person&>(obj);
+	std::cout << " Enter NameParty ";
 	obj.setNameParty(input_Str(in));
+	std::cout << " Enter Biogrophy ";
 	obj.setBiogrophy(input_Str(in));
 	return in;
 }

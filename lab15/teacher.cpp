@@ -62,7 +62,7 @@ int teacher::getListpapers() const
 void teacher::title()
 {
 	std::cout << "+---+---------------+-----------+---------------+---------------+-----------------+---------------------+" << std::endl;
-	std::cout << "| ¹ |   Surname     |  Lastname |     Year      |    Position   |    Speciality   |      Listpapers     |" << std::endl;
+	std::cout << "| N |   Surname     |  Lastname |     Year      |    Position   |    Speciality   |      Listpapers     |" << std::endl;
 	std::cout << "+---+---------------+-----------+---------------+---------------+-----------------+---------------------+" << std::endl;
 }
 

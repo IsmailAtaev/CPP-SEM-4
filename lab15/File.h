@@ -47,7 +47,7 @@ public:
 	FileBin(std::string path) :File(path) {
 		this->file_stream.open(this->getFileName(), std::ios::in | std::ios::out | std::ios::binary);
 		if (!this->file_stream.is_open()) {
-			std::cout << " Файл не открыт \n ";
+			std::cout << " File is not opne \n ";
 			exit(1);
 		}
 	}

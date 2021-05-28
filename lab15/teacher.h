@@ -1,7 +1,7 @@
 #pragma once
 #include "person.h"
 
-class teacher : public person
+class teacher : virtual public person
 {
 private:
 	std::string position; // Должность

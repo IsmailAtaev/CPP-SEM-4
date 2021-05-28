@@ -1,4 +1,7 @@
 ataew ismaik 2001 www ddd 111
 Kadyrow Merdan 2000 senor java 22
-Amnayew Ali 2001 Teacher phyton 33
-Kakamyradow Arslan 2001 junior java 11
+Amnayew Ali 2002 Teacher phyton 33
+Kakamyradow Arslan 1999 junior java 11
+kk gg 2001 eee ddd 22
+qq ww 2003 gg hh 33
+kk ll 2002 ee rr 33

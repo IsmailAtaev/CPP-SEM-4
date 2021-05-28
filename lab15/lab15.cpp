@@ -1,4 +1,5 @@
 ﻿#include "my_interface.h"
+#include "my_interface.cpp"
 
 int main()
 {
