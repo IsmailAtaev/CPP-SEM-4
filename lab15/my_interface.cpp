@@ -121,10 +121,9 @@ void my_interface<T>::my_function()
                 std::cout << " 2. Delete All." << std::endl;
                 std::cout << " 3. Delete remove earase(remove())." << std::endl;
                 std::cout << " 4. Delete from and to." << std::endl;
-                std::cout << " 5. remove duplicate elements." << std::endl;
                 std::cout << " 0. Exit " << std::endl;
                 std::cout << " Enter number " << std::endl;
-                switch (input_INT(std::cin, 0, 5))
+                switch (input_INT(std::cin, 0, 4))
                 {
                 case 1:
                 {
@@ -156,12 +155,6 @@ void my_interface<T>::my_function()
                     int elem2 = input_INT(std::cin, 1, ob.size());
                     int m = ob.size() - elem2;
                     ob.erase(ob.begin() + elem, ob.end() - m);
-                }
-                case 5: 
-                {
-                    auto result = std::unique(ob.begin(), ob.end());
-                    ob.erase(result, ob.end());
-                    break;
                 }
                 default:
                     break;
@@ -311,6 +304,11 @@ void my_interface<T>::my_function()
             std::cout << "\n\n\n\n================= \n\n\n\n\n" << std::endl;
             for_each(ob.begin(), ob.end(), [](T tt) {std::cout << tt << std::endl; });
 
+
+            deque<T> result;
+            std::copy(ob.begin(), ob.end(), back_inserter(result));
+            Print<T>(result.begin(),result.end());
+            break;
         }
         default: { break; }
         }
