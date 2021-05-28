@@ -5,3 +5,5 @@ Kakamyradow Arslan 1999 junior java 11
 kk gg 2001 eee ddd 22
 qq ww 2003 gg hh 33
 kk ll 2002 ee rr 33
+Kadyrow Merdan 2000 senor java 22
+kk gg 2001 eee ddd 22

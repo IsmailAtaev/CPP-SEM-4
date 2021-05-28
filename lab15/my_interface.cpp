@@ -121,15 +121,18 @@ void my_interface<T>::my_function()
                 std::cout << " 2. Delete All." << std::endl;
                 std::cout << " 3. Delete remove earase(remove())." << std::endl;
                 std::cout << " 4. Delete from and to." << std::endl;
+                std::cout << " 5. remove duplicate elements." << std::endl;
                 std::cout << " 0. Exit " << std::endl;
                 std::cout << " Enter number " << std::endl;
-                switch (input_INT(std::cin, 0, 4))
+                switch (input_INT(std::cin, 0, 5))
                 {
-                case 1: {
+                case 1:
+                {
                     ob.pop_front();
                     break;
                 }
-                case 2: {
+                case 2: 
+                {
                     ob.clear();
                     break;
                 }
@@ -148,12 +151,17 @@ void my_interface<T>::my_function()
                     Print<T>(ob.begin(), ob.end());
                     std::cout << " Enter number for delete  from \t" << std::endl;
                     int elem = input_INT(std::cin, 1, ob.size()) - 1;
-                                     
                     Print<T>(ob.begin(), ob.end());
                     std::cout << " Enter number for delete  to \t" << std::endl;
                     int elem2 = input_INT(std::cin, 1, ob.size());
                     int m = ob.size() - elem2;
                     ob.erase(ob.begin() + elem, ob.end() - m);
+                }
+                case 5: 
+                {
+                    auto result = std::unique(ob.begin(), ob.end());
+                    ob.erase(result, ob.end());
+                    break;
                 }
                 default:
                     break;
