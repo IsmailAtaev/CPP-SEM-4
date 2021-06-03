@@ -90,7 +90,7 @@ void my_interface<T>::my_function()
         std::cout << " 8. Write with file." << std::endl;
         std::cout << " 0  Exit." << std::endl;
         std::cout << " Enter number \t";
-        temp = input_INT(std::cin, 0, 9);
+        temp = input_INT(std::cin, 0, 8);
         system("cls");
         switch (temp)
         {
@@ -150,11 +150,18 @@ void my_interface<T>::my_function()
                     Print<T>(ob.begin(), ob.end());
                     std::cout << " Enter number for delete  from \t" << std::endl;
                     int elem = input_INT(std::cin, 1, ob.size()) - 1;
-                    Print<T>(ob.begin(), ob.end());
+                   
                     std::cout << " Enter number for delete  to \t" << std::endl;
                     int elem2 = input_INT(std::cin, 1, ob.size());
+
+                    if (elem2 < elem){
+                        std::cout << "enter > please  " << elem << std::endl;
+                        break;
+                    }
+
                     int m = ob.size() - elem2;
-                    ob.erase(ob.begin() + elem, ob.end() - m);
+                    ob.erase(ob.begin() + elem, ob.begin() + elem2);
+                    //ob.erase(ob.begin() + elem, ob.end() - m);
                 }
                 default:
                     break;
@@ -185,26 +192,17 @@ void my_interface<T>::my_function()
             }
             break;
         }
-        case 5:
-        {
+        case 5:        {
             if (!ob.empty())
             {
                 Print<T>(ob.begin(), ob.end());
                 std::cout << " Enter number for edit " << std::endl;
                 int coutn = input_INT(std::cin, 1, ob.size()) - 1;
                 ob[coutn].Edit();
-               /* auto it = ob.begin();
-                for (int i = 0; it != ob.end(); it++, i++)
-                {
-                    if (i == coutn)
-                    {
-                       // (*it).Edit();
-                        break;
-                    }
-                }*/
             }
             break;
         }
+
         case 6:
         {
             if (!ob.empty()) {
@@ -292,22 +290,6 @@ void my_interface<T>::my_function()
                     std::cout << " error (state file != 1 and 2 ) global error " << std::endl;
                 }
             }
-            break;
-        }
-
-        case 9:
-        {
-            for (auto it : ob)
-            {
-                std::cout << it << std::endl;
-            }
-            std::cout << "\n\n\n\n================= \n\n\n\n\n" << std::endl;
-            for_each(ob.begin(), ob.end(), [](T tt) {std::cout << tt << std::endl; });
-
-
-            deque<T> result;
-            std::copy(ob.begin(), ob.end(), back_inserter(result));
-            Print<T>(result.begin(),result.end());
             break;
         }
         default: { break; }
